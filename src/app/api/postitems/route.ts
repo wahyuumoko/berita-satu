@@ -4,8 +4,8 @@ import PostItem from "../../../../models/PostItem";
 dbConnect()
 
 export async function GET() {
-    const postitem = await PostItem.find().select('-__v');
-    return Response.json(postitem);
+    const postItem = await PostItem.find().select('-__v');
+    return Response.json(postItem);
 }
 
 export async function POST(request: Request) {
