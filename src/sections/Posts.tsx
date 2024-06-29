@@ -27,7 +27,7 @@ export default function posts() {
         {items &&
           items.length > 0 &&
           items.map((item: { item: { id: string; title: string } }) => (
-            <p key={item._id}>{ item._title }</p>
+            <p key={item._id}>{ item.title }</p>
           ))}
       </div>
     </section>
