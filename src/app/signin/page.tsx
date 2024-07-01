@@ -2,32 +2,26 @@
 "use client";
 
 import { useState } from "react";
+import Axios  from "axios";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
-const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      console.log("Login successful:", data);
-      router.push("/createPost"); // Redirect to profile page after login
-    } else {
-      console.error("Login failed");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/login', { email, password });
+      if (response.status === 200) {
+        router.push('/createPost');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
     }
   };
-
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 bg-primary">
       <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-sm">
@@ -37,12 +31,9 @@ const LoginForm = () => {
             Email
           </label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            type="email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} required
             className="form-control"
           />
         </div>
@@ -51,13 +42,11 @@ const LoginForm = () => {
             Password
           </label>
           <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="form-control"
+           type="password" 
+           value={password} 
+           onChange={(e) => setPassword(e.target.value)} 
+           required
+           className="form-control"
           />
         </div>
         <div className="d-flex justify-content-between align-items-center mb-3 flex-column">
@@ -72,4 +61,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default Login;

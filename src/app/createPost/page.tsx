@@ -5,7 +5,7 @@ import { title } from "process";
 import React, { useState, useEffect} from "react";
 
 export const initialState = {
-  title: "",
+  title: "",     
   img: "",
   category: "",
   author: "",
