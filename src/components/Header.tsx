@@ -45,6 +45,9 @@ export default function Header() {
                         ></i>
                     )}
                     <SearchForm active={open} formOpen={handleFormOpen}/>
+                    <a href="/signin" className="bi-person-circle color-black">
+            log-in
+          </a>
                 </div>
             </div>
         </header>
