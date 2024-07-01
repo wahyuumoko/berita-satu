@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "C": "^5.1.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "dotenv": "^16.4.5",
